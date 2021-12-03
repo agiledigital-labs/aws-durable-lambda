@@ -1,0 +1,19 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Webpack directories
+.webpack
+
+# ts-coverage
+coverage-ts-src
+coverage-ts-test
+.idea
+.envrc
+/coverage/
+
+#MAC hidden file
+.DS_Store

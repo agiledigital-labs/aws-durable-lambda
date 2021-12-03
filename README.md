@@ -1,1 +1,1 @@
-# aws-durable-lambda
+# AWS Durable Lambda
