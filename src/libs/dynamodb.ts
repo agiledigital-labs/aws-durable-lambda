@@ -1,16 +1,18 @@
 import * as dynamoose from 'dynamoose';
 
 const schema = new dynamoose.Schema({
-  "ID": {
+  ID: {
     type: String,
     hashKey: true,
     required: true
   },
-  "FunctionName": {
+  FunctionName: {
     type: String, 
     rangeKey: true
   },
-  "Status": String
+  Status: String,
+  Message: String,
+  Response: String
 });
 
 export const functionTaskTable = dynamoose.model(process.env.FUNCTION_TASK_TABLE_NAME, schema);

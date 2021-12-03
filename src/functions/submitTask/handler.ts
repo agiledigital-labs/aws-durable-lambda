@@ -14,7 +14,8 @@ const submitTask = async (event: APIGatewayEvent) => {
     await sqs.sendMessage({
       QueueUrl: process.env.FUNCTION_TASK_QUEUE_URL,
       MessageBody: JSON.stringify({
-        FunctionName: functionName
+        functionName,
+        taskId
       })
     }).promise();
 

@@ -1,6 +1,9 @@
 import type { AWS } from '@serverless/typescript';
 import submitTask from '@functions/submitTask';
 import getTask from '@functions/getTask';
+import myFunction from '@functions/myFunction';
+import orchestrator from '@functions/orchestrator';
+import reporter from '@functions/reporter';
 
 const serverlessConfiguration: AWS = {
   service: 'aws-durable-lambda',
@@ -17,39 +20,48 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      FUNCTION_TASK_QUEUE_NAME: "FunctionTaskQueue-${opt:stage}",
+      FUNCTION_TASK_QUEUE_NAME: 'FunctionTaskQueue-${opt:stage}',
+      FUNCTION_TASK_OUT_PUT_QUEUE_NAME: 'FunctionTaskOutputQueue-${opt:stage}',
+      FUNCTION_TASK_OUTPUT_QUEUE_URL: { Ref: 'FunctionTaskOutputQueue' },
       FUNCTION_TASK_QUEUE_URL: { Ref: 'FunctionTaskQueue' },
-      FUNCTION_TASK_TABLE_NAME: "FunctionTaskTable-${opt:stage}"
+      FUNCTION_TASK_TABLE_NAME: 'FunctionTaskTable-${opt:stage}'
     },
     lambdaHashingVersion: '20201221',
     iam: {
       role: {
         statements: [
           {
-            Effect: "Allow",
+            Effect: 'Allow',
             Action: [
-              "dynamodb:BatchGet*",
-              "dynamodb:DescribeStream",
-              "dynamodb:DescribeTable",
-              "dynamodb:Get*",
-              "dynamodb:Query",
-              "dynamodb:Scan",
-              "dynamodb:BatchWrite*",
-              "dynamodb:CreateTable",
-              "dynamodb:Delete*",
-              "dynamodb:Update*",
-              "dynamodb:PutItem"
+              'lambda:InvokeFunction'
             ],
-            Resource: "*"
+            Resource: '*'
           },
           {
-            Effect: "Allow",
+            Effect: 'Allow',
             Action: [
-              "sqs:GetQueueUrl",
-              "sqs:SendMessage",
-              "sqs:ReceiveMessage"
+              'dynamodb:BatchGet*',
+              'dynamodb:DescribeStream',
+              'dynamodb:DescribeTable',
+              'dynamodb:Get*',
+              'dynamodb:Query',
+              'dynamodb:Scan',
+              'dynamodb:BatchWrite*',
+              'dynamodb:CreateTable',
+              'dynamodb:Delete*',
+              'dynamodb:Update*',
+              'dynamodb:PutItem'
             ],
-            Resource: "*"
+            Resource: '*'
+          },
+          {
+            Effect: 'Allow',
+            Action: [
+              'sqs:GetQueueUrl',
+              'sqs:SendMessage',
+              'sqs:ReceiveMessage'
+            ],
+            Resource: '*'
           }
         ]
       }
@@ -58,7 +70,10 @@ const serverlessConfiguration: AWS = {
   // import the function via paths
   functions: {
     submitTask,
-    getTask
+    getTask,
+    orchestrator,
+    myFunction,
+    reporter
   },
   package: { individually: true },
   resources: {
@@ -79,28 +94,44 @@ const serverlessConfiguration: AWS = {
         Type: 'AWS::SQS::Queue',
         Properties: {},
       },
+      FunctionTaskOutputQueue: {
+        Type: 'AWS::SQS::Queue',
+        Properties: {
+          QueueName: 'FunctionTaskOutputQueue-${opt:stage}',
+          RedrivePolicy: {
+            deadLetterTargetArn: {
+              'Fn::GetAtt': ['FunctionTaskOutputDeadLetterQueue', 'Arn'],
+            },
+            maxReceiveCount: 5,
+          },
+        },
+      },
+      FunctionTaskOutputDeadLetterQueue: {
+        Type: 'AWS::SQS::Queue',
+        Properties: {},
+      },
       FunctionTaskTable: {
         Type: 'AWS::DynamoDB::Table',
         Properties: {
-          TableName: "FunctionTaskTable-${opt:stage}",
+          TableName: 'FunctionTaskTable-${opt:stage}',
           AttributeDefinitions: [
             {
-              AttributeName: "ID",
-              AttributeType: "S"
+              AttributeName: 'ID',
+              AttributeType: 'S'
             },
             {
-              AttributeName: "FunctionName",
-              AttributeType: "S"
+              AttributeName: 'FunctionName',
+              AttributeType: 'S'
             }
           ],
           KeySchema: [
             {
-              AttributeName: "ID",
-              KeyType: "HASH"
+              AttributeName: 'ID',
+              KeyType: 'HASH'
             },
             {
-              AttributeName: "FunctionName",
-              KeyType: "RANGE"
+              AttributeName: 'FunctionName',
+              KeyType: 'RANGE'
             }
           ],
           ProvisionedThroughput: {
