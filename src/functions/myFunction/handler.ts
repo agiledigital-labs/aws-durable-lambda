@@ -1,5 +1,5 @@
 
-const dummyLongRunningProcessTimeInMillis = 20 * 1000;
+const dummyLongRunningProcessTimeInMillis = 40 * 1000;
 
 const dummyLongRunningProcess = () => new Promise((resolve) => {
   setTimeout(() => resolve({ message: 'Finished long journey' }), dummyLongRunningProcessTimeInMillis);

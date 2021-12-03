@@ -7,6 +7,8 @@ type TaskResultBody = {
   status: string;
   message?: string;
   response?: string;
+  startedAt?: string;
+  finishedAt?: string;
 }
 
 const reporter = async (event: SQSEvent) => {
@@ -23,7 +25,9 @@ const reporter = async (event: SQSEvent) => {
     }, {
       Status: body.status,
       Message: body.message,
-      Response: body.response
+      Response: body.response,
+      StartedAt: body.startedAt,
+      FinishedAt: body.finishedAt,
     });
 
     return body;

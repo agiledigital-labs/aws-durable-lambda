@@ -11,6 +11,8 @@ const submitTask = async (event: APIGatewayEvent) => {
 
     const apiUrl = event.headers['X-Forwarded-Proto'] + '://' + event.headers['Host'] + '/' + event.requestContext['stage'];
 
+    const submittedAt = new Date().toISOString();
+
     await sqs.sendMessage({
       QueueUrl: process.env.FUNCTION_TASK_QUEUE_URL,
       MessageBody: JSON.stringify({
@@ -22,7 +24,8 @@ const submitTask = async (event: APIGatewayEvent) => {
     await functionTaskTable.Model.create({
       ID: taskId,
       FunctionName: functionName,
-      Status: 'Processing'
+      Status: 'Processing',
+      SubmittedAt: submittedAt,
     });
 
     return {

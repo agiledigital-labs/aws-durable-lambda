@@ -12,7 +12,10 @@ const schema = new dynamoose.Schema({
   },
   Status: String,
   Message: String,
-  Response: String
+  Response: String,
+  StartedAt: String,
+  FinishedAt: String,
+  SubmittedAt: String
 });
 
 export const functionTaskTable = dynamoose.model(process.env.FUNCTION_TASK_TABLE_NAME, schema);

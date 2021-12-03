@@ -10,19 +10,21 @@ type TaskMessageBody = {
 const orchestrator = async (event: SQSEvent) => {
   const messages = event.Records;
 
-  console.log(messages);
-
   const results = await Promise.all(messages.map(async (message) => {
+    const startedAt = new Date().toISOString();
+
     try {
       const body = JSON.parse(message.body) as TaskMessageBody;
 
       const response = await lambda.invoke({
         FunctionName: body.functionName,
       }).promise();
+
+      const finishedAt = new Date().toISOString();
   
-      return { ...body, response: JSON.stringify(response) };
+      return { ...body, response: JSON.stringify(response), startedAt, finishedAt };
     } catch (e) {
-      return { error: true, message: e.message };
+      return { error: true, message: e.message, startedAt };
     }
   }));
 
