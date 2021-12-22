@@ -6,7 +6,7 @@ const dummyLongRunningProcess = () => new Promise((resolve) => {
 })
 
 const myFunction = async (event: unknown) => {
-  console.log("Called", event);
+  console.log("Received event", event);
 
   const result = await dummyLongRunningProcess();
 

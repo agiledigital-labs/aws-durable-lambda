@@ -1,18 +1,18 @@
 import type { AWS } from '@serverless/typescript';
-import submitTask from '@functions/submitTask';
-import getTask from '@functions/getTask';
 import myFunction from '@functions/myFunction';
-import orchestrator from '@functions/orchestrator';
-import reporter from '@functions/reporter';
 
 const serverlessConfiguration: AWS = {
   service: 'aws-durable-lambda',
   frameworkVersion: '2',
-  plugins: ['serverless-esbuild'],
+  plugins: [
+    'serverless-esbuild',
+    './plugin/aws-durable-lambda'
+  ],
   provider: {
     name: 'aws',
     region: 'ap-southeast-2',
     runtime: 'nodejs14.x',
+    stage: '${opt:stage}',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -20,11 +20,6 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      FUNCTION_TASK_QUEUE_NAME: 'FunctionTaskQueue-${opt:stage}',
-      FUNCTION_TASK_OUT_PUT_QUEUE_NAME: 'FunctionTaskOutputQueue-${opt:stage}',
-      FUNCTION_TASK_OUTPUT_QUEUE_URL: { Ref: 'FunctionTaskOutputQueue' },
-      FUNCTION_TASK_QUEUE_URL: { Ref: 'FunctionTaskQueue' },
-      FUNCTION_TASK_TABLE_NAME: 'FunctionTaskTable-${opt:stage}'
     },
     lambdaHashingVersion: '20201221',
     iam: {
@@ -69,78 +64,11 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: {
-    submitTask,
-    getTask,
-    orchestrator,
     myFunction,
-    reporter
   },
   package: { individually: true },
   resources: {
-    Resources: {
-      FunctionTaskQueue: {
-        Type: 'AWS::SQS::Queue',
-        Properties: {
-          QueueName: 'FunctionTaskQueue-${opt:stage}',
-          RedrivePolicy: {
-            deadLetterTargetArn: {
-              'Fn::GetAtt': ['FunctionTaskDeadLetterQueue', 'Arn'],
-            },
-            maxReceiveCount: 5,
-          },
-        },
-      },
-      FunctionTaskDeadLetterQueue: {
-        Type: 'AWS::SQS::Queue',
-        Properties: {},
-      },
-      FunctionTaskOutputQueue: {
-        Type: 'AWS::SQS::Queue',
-        Properties: {
-          QueueName: 'FunctionTaskOutputQueue-${opt:stage}',
-          RedrivePolicy: {
-            deadLetterTargetArn: {
-              'Fn::GetAtt': ['FunctionTaskOutputDeadLetterQueue', 'Arn'],
-            },
-            maxReceiveCount: 5,
-          },
-        },
-      },
-      FunctionTaskOutputDeadLetterQueue: {
-        Type: 'AWS::SQS::Queue',
-        Properties: {},
-      },
-      FunctionTaskTable: {
-        Type: 'AWS::DynamoDB::Table',
-        Properties: {
-          TableName: 'FunctionTaskTable-${opt:stage}',
-          AttributeDefinitions: [
-            {
-              AttributeName: 'ID',
-              AttributeType: 'S'
-            },
-            {
-              AttributeName: 'FunctionName',
-              AttributeType: 'S'
-            }
-          ],
-          KeySchema: [
-            {
-              AttributeName: 'ID',
-              KeyType: 'HASH'
-            },
-            {
-              AttributeName: 'FunctionName',
-              KeyType: 'RANGE'
-            }
-          ],
-          ProvisionedThroughput: {
-            ReadCapacityUnits: 1,
-            WriteCapacityUnits: 1
-          }
-        }
-      }
-    }
+    Resources: {}
   },
   custom: {
     esbuild: {
