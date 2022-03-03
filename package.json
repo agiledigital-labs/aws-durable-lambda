@@ -20,7 +20,7 @@
   "devDependencies": {
     "@serverless/typescript": "2.71.0",
     "@types/aws-lambda": "8.10.93",
-    "@types/node": "16.11.20",
+    "@types/node": "16.11.26",
     "json-schema-to-ts": "1.6.5",
     "serverless": "2.72.0",
     "serverless-esbuild": "1.23.3",
