@@ -2605,10 +2605,10 @@ semver@^7.3.5:
   dependencies:
     lru-cache "^6.0.0"
 
-serverless-esbuild@1.23.3:
-  version "1.23.3"
-  resolved "https://registry.yarnpkg.com/serverless-esbuild/-/serverless-esbuild-1.23.3.tgz#ad22e5ff86de5b486fd17e5486039ed3944c741a"
-  integrity sha512-lUxOS5Gc9PxbMcZ1d1G8USP816r3WiUMY8rQ/2MAWbOr9xGF3a+QaWyz8RunzX/IMjSWyPj/qtP0BObfEvrGbw==
+serverless-esbuild@1.25.0:
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/serverless-esbuild/-/serverless-esbuild-1.25.0.tgz#c19527b0a658af27cc0671f9b50538e7cda0958b"
+  integrity sha512-n/ztyc8kZIZV70PK/RHXISENhgl2e6Zxj876QIXFsJQAv97Vnwa4wBMsTb3AHcLdx1WxJcRFp+uf/gHkpn0wjg==
   dependencies:
     archiver "^5.3.0"
     bestzip "^2.2.0"
