@@ -9,7 +9,7 @@ a response with a HTTP GET URL to query the status of the task.
 
 `plugin` is a local Serverless Framework plugin that can be extracted to a separate library in the future when it is cleaned up and feature finished.
 
-Usage is demonstrated in teh `serverless.ts`:
+Usage is demonstrated in `serverless.ts`:
 ```
   plugins: [
     './plugin/aws-durable-lambda'
