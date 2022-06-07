@@ -1,0 +1,23 @@
+{
+  "name": "adl-example-serverless-jetpack",
+  "version": "1.0.0",
+  "description": "An project that demonstrates how the aws-durable-lambda Serverless plugin in used",
+  "main": "serverless.js",
+  "scripts": {},
+  "engines": {
+    "node": ">=14.15.0"
+  },
+  "dependencies": {
+    "dynamoose": "^2.8.3"
+  },
+  "devDependencies": {
+    "@agiledigital/aws-durable-lambda": "../../plugin",
+    "@types/aws-lambda": "8.10.93",
+    "@types/node": "16.11.26",
+    "aws-sdk": "^2.1042.0",
+    "serverless": "3.7.1",
+    "serverless-jetpack": "^0.11.1"
+  },
+  "author": "Agile Digital",
+  "license": "MIT"
+}

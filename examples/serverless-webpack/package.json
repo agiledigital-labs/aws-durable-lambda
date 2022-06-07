@@ -1,0 +1,35 @@
+{
+  "name": "adl-example-serverless-webpack",
+  "version": "1.0.0",
+  "description": "An project that demonstrates how the aws-durable-lambda Serverless plugin in used",
+  "main": "serverless.ts",
+  "scripts": {},
+  "engines": {
+    "node": ">=14.15.0"
+  },
+  "dependencies": {
+    "dynamoose": "^2.8.3"
+  },
+  "devDependencies": {
+    "@agiledigital/aws-durable-lambda": "../../plugin",
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-typescript": "^7.17.12",
+    "@serverless/typescript": "3.3.0",
+    "@types/aws-lambda": "8.10.93",
+    "@types/node": "16.11.26",
+    "aws-sdk": "^2.1042.0",
+    "babel-loader": "^8.2.5",
+    "cache-loader": "^4.1.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.11",
+    "serverless": "3.7.1",
+    "serverless-webpack": "^5.7.1",
+    "ts-node": "10.6.0",
+    "tsconfig-paths": "3.13.0",
+    "typescript": "4.6.2",
+    "webpack": "^5.73.0",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "author": "Agile Digital",
+  "license": "MIT"
+}

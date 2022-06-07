@@ -7,6 +7,7 @@ jspm_packages
 
 # Webpack directories
 .webpack
+.webpackCache
 
 # ts-coverage
 coverage-ts-src
@@ -14,6 +15,13 @@ coverage-ts-test
 .idea
 .envrc
 /coverage/
+lib
 
 #MAC hidden file
 .DS_Store
+
+# Direnv
+.envrc
+
+# yarn
+yarn-error.log
