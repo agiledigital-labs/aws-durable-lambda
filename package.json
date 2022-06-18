@@ -22,7 +22,7 @@
     "@types/aws-lambda": "8.10.93",
     "@types/node": "16.11.26",
     "json-schema-to-ts": "1.6.5",
-    "serverless": "3.7.1",
+    "serverless": "3.19.0",
     "serverless-esbuild": "1.25.0",
     "ts-node": "10.6.0",
     "tsconfig-paths": "3.13.0",
