@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-        bundler: [vanilla, serverless-esbuild, serverless-jetpack, serverless-plugin-typescript, serverless-webpack]
+        bundler: [vanilla, serverless-esbuild, serverless-jetpack, spt, serverless-webpack]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
