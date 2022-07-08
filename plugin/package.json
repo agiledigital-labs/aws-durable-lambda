@@ -28,7 +28,7 @@
     "@types/node": "16.11.26",
     "@types/uuid": "^8.3.3",
     "aws-sdk": "^2.1042.0",
-    "dynamoose": "^2.8.3",
+    "dynamoose": "2.8.5",
     "esbuild": "^0.14.43",
     "esbuild-node-externals": "^1.4.1",
     "esbuild-node-tsc": "^1.8.5",

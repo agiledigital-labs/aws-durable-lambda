@@ -465,10 +465,10 @@ dir-glob@^2.2.2:
   dependencies:
     path-type "^3.0.0"
 
-dynamoose@^2.8.3:
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-2.8.3.tgz#a490f7f4969f86a928c486cb84c2780bdce8d1e5"
-  integrity sha512-fq3A307HjYkTmPeyya7tRlQhhcq2gYqxng7vEmiviNKenurw+NbdA8Krer+YmfmAPMalTZ4CqXRGJiYkGmanyA==
+dynamoose@2.8.5:
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-2.8.5.tgz#3c17cfa56a79d1473f5e81f9aca60720ca177f55"
+  integrity sha512-2Y88TvZKcCYroO3hzMwxYYte8FltVj6SN3HKC4tjm4HiKbNbQbppX8KnsPUIhpFRKc52TXWOvrVhl+PXsHxnTA==
   dependencies:
     aws-sdk "^2.968.0"
     js-object-utilities "^2.0.0"
