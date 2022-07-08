@@ -36,6 +36,7 @@ jobs:
         name: Install plugin dependencies
         working-directory: plugin
       - run: yarn format-check
+        if: matrix.os == 'ubuntu-latest'
         name: Check plugin formatting
         working-directory: plugin
       - run: yarn build
