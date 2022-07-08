@@ -26,7 +26,7 @@
     "@types/aws-lambda": "8.10.93",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "16.11.26",
-    "@types/uuid": "^8.3.3",
+    "@types/uuid": "8.3.4",
     "aws-sdk": "^2.1042.0",
     "dynamoose": "^2.8.3",
     "esbuild": "^0.14.43",
