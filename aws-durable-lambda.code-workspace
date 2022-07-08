@@ -5,7 +5,6 @@
     }
   ],
   "settings": {
-    // One day we might use prettier to make the formatting IDE independent but it would be too noisy for now
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

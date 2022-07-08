@@ -1,4 +1,4 @@
-name: 'Package aws-durable-lambda plugin'
+name: "Package aws-durable-lambda plugin"
 
 on:
   push:
@@ -10,10 +10,17 @@ jobs:
   package:
     # Don't build if Semantic Release pushes a ci skip commit
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    
+
     strategy:
       matrix:
-        bundler: [vanilla, serverless-esbuild, serverless-jetpack, spt, serverless-webpack]
+        bundler:
+          [
+            vanilla,
+            serverless-esbuild,
+            serverless-jetpack,
+            spt,
+            serverless-webpack,
+          ]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
@@ -27,6 +34,9 @@ jobs:
       # TODO: Can we build/test the plugin once and then share with the example project jobs?
       - run: yarn install
         name: Install plugin dependencies
+        working-directory: plugin
+      - run: yarn format-check
+        name: Check plugin formatting
         working-directory: plugin
       - run: yarn build
         name: Build plugin

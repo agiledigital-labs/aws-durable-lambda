@@ -1,5 +1,4 @@
 const functions = (service, stage, functionStagingDirectoryName) => ({
-
   getTask: {
     name: `${service}-adl-${stage}-get-task`,
     handler: `${functionStagingDirectoryName}/functions/getTask/handler.main`,
@@ -7,10 +6,10 @@ const functions = (service, stage, functionStagingDirectoryName) => ({
       {
         http: {
           method: 'get',
-          path: 'task/{taskId}'
-        }
-      }
-    ]
+          path: 'task/{taskId}',
+        },
+      },
+    ],
   },
   orchestrator: {
     name: `${service}-adl-${stage}-orchestrator`,
@@ -20,8 +19,8 @@ const functions = (service, stage, functionStagingDirectoryName) => ({
       {
         sqs: { arn: { 'Fn::GetAtt': ['FunctionTaskQueue', 'Arn'] } },
         batchSize: 1,
-      }
-    ]
+      },
+    ],
   },
   reporter: {
     name: `${service}-adl-${stage}-reporter`,
@@ -31,8 +30,8 @@ const functions = (service, stage, functionStagingDirectoryName) => ({
       {
         sqs: { arn: { 'Fn::GetAtt': ['FunctionTaskOutputQueue', 'Arn'] } },
         batchSize: 1,
-      }
-    ]
+      },
+    ],
   },
   submitTask: {
     name: `${service}-adl-${stage}-submit-task`,
@@ -41,11 +40,11 @@ const functions = (service, stage, functionStagingDirectoryName) => ({
       {
         http: {
           method: 'post',
-          path: 'create-task/{functionName}'
-        }
-      }
-    ]
-  }
+          path: 'create-task/{functionName}',
+        },
+      },
+    ],
+  },
 });
 
 module.exports = functions;
