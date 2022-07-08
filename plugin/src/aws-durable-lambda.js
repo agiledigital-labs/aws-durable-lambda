@@ -1,17 +1,12 @@
 'use strict';
 
-const { join } = require("path");
-const dynamodb = require("./resources/dynamodb");
-const functions = require("./resources/functions");
-const sqs = require("./resources/sqs");
-const { copy, remove } = require("fs-extra");
+const { join } = require('path');
+const dynamodb = require('./resources/dynamodb');
+const sqs = require('./resources/sqs');
+const { copy, remove } = require('fs-extra');
 
-import {
-  orchestratorIamPolicy,
-  getTaskIamPolicy,
-  reporterIamPolicy,
-  submitTaskIamPolicy,
-} from "./resources/iam";
+import iam from './resources/iam';
+import functions from './resources/functions';
 
 const functionStagingDirectoryName = '.adl';
 const getFunctionStagingDirectory = (serverless) => {
@@ -27,13 +22,28 @@ function addResources(serverless) {
 
   serverless.service.resources.Resources = {
     ...serverless.service.resources.Resources,
-    ...sqs(stage),
-    ...dynamodb(stage),
+    ...sqs,
+    ...dynamodb,
+    ...iam,
   };
 
   serverless.service.functions = {
     ...serverless.service.functions,
     ...functions(service, stage, functionStagingDirectoryName),
+  };
+
+  serverless.service.provider.iam = {
+    ...(provider.iam ?? {}),
+    role: {
+      ...(provider.iam?.role ?? {}),
+      managedPolicies: [
+        ...(provider.iam?.role?.managedPolicies ?? []),
+        // Reference any of the IAM policies defined in CloudFormation
+        ...Object.keys(iam).map((policyLogicalName) => ({
+          Ref: policyLogicalName,
+        })),
+      ],
+    },
   };
 
   serverless.service.provider.environment = {

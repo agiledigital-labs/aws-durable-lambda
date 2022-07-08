@@ -20,5 +20,9 @@ const schema = new dynamoose.Schema({
 
 export const functionTaskTable = dynamoose.model(
   process.env.FUNCTION_TASK_TABLE_NAME,
-  schema
+  schema,
+  {
+    // CloudFormation already creates our table, we don't need to do it here
+    create: false,
+  }
 );

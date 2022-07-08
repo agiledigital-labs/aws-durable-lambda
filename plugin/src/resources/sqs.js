@@ -1,4 +1,4 @@
-const sqs = () => ({
+const sqs = {
   FunctionTaskQueue: {
     Type: 'AWS::SQS::Queue',
     Properties: {
@@ -31,6 +31,6 @@ const sqs = () => ({
     Type: 'AWS::SQS::Queue',
     Properties: {},
   },
-});
+};
 
 module.exports = sqs;

@@ -1,4 +1,4 @@
-const dynamodb = () => ({
+const dynamodb = {
   FunctionTaskTable: {
     Type: 'AWS::DynamoDB::Table',
     Properties: {
@@ -28,6 +28,6 @@ const dynamodb = () => ({
       },
     },
   },
-});
+};
 
 module.exports = dynamodb;
