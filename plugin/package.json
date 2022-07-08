@@ -22,7 +22,7 @@
     "dynamoose": ">=2.8.3"
   },
   "devDependencies": {
-    "@serverless/typescript": "3.3.0",
+    "@serverless/typescript": "3.19.0",
     "@types/aws-lambda": "8.10.93",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "16.11.26",

@@ -27,10 +27,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@serverless/typescript@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@serverless/typescript/-/typescript-3.3.0.tgz#ada60a5599f19fa9e2e9018be2f1b2970da7c0c3"
-  integrity sha512-EzB0N/6IEtKBAU/4gvn4u9JaLTjXy5ARH2XWqi3yAsZUG7PGZyx9Ja6VW4kh9KQlX77JbFT+sz9c4ACbzoIEQA==
+"@serverless/typescript@3.19.0":
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/@serverless/typescript/-/typescript-3.19.0.tgz#566674444b6436a2413c7358e61c855f352b459c"
+  integrity sha512-L9ZWQCD4BSD4Q79WI4pngFjyQ2yf9xzCKCHFx2j6zxlgf2CE1/gDXBVgDMWFASoK8YY39bRBiBR6u/OUWHi9Ow==
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.8"
