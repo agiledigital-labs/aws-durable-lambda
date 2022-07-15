@@ -40,10 +40,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@serverless/typescript@3.19.0":
-  version "3.19.0"
-  resolved "https://registry.yarnpkg.com/@serverless/typescript/-/typescript-3.19.0.tgz#566674444b6436a2413c7358e61c855f352b459c"
-  integrity sha512-L9ZWQCD4BSD4Q79WI4pngFjyQ2yf9xzCKCHFx2j6zxlgf2CE1/gDXBVgDMWFASoK8YY39bRBiBR6u/OUWHi9Ow==
+"@serverless/typescript@3.21.0":
+  version "3.21.0"
+  resolved "https://registry.yarnpkg.com/@serverless/typescript/-/typescript-3.21.0.tgz#f23969cd9c4c9afb0840400e4f53d89bca1a6e01"
+  integrity sha512-SiGqgBbE1npu4wMCKsN+sF5pH3RIsQvjvtzhnr6ZYuDDX1r1I1lVR0uLk12v2vAIywVUmKym7Z3cKUTc7NIioA==
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.8"
@@ -199,10 +199,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@2.1174.0:
-  version "2.1174.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1174.0.tgz#3e2acb1ee29229cc5d97015b2d1a18c41e967979"
-  integrity sha512-t/Cwbdunmoj3WAI+u+hw/kr6mla1sYCn+VncxxIjkACStA47+ZTsfd7cQfpoVMit5KubkHaJ3SHX4/qvmt0Jfg==
+aws-sdk@2.1176.0:
+  version "2.1176.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1176.0.tgz#f3524433a60857a8fcd21722251f2b1f19d72008"
+  integrity sha512-jinSKjACYHIkkz0UlFwQXwz8HAHZIeJg5wOnZoMTKU3/WM6Vh26hZJJ6XkwDAfBmyWp3V9qFdQoSAiO8SeXKjw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -1994,10 +1994,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-ts-node@10.9.0:
-  version "10.9.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.0.tgz#d719c3e66e821fb9ad5e1c006542974c29145ca8"
-  integrity sha512-bunW18GUyaCSYRev4DPf4SQpom3pWH29wKl0sDk5zE7ze19RImEVhCW7K4v3hHKkUyfWotU08ToE2RS+Y49aug==
+ts-node@10.9.1:
+  version "10.9.1"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
+  integrity sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==
   dependencies:
     "@cspotcode/source-map-support" "^0.8.0"
     "@tsconfig/node10" "^1.0.7"
