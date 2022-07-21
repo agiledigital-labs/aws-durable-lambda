@@ -199,10 +199,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@2.1177.0:
-  version "2.1177.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1177.0.tgz#b6f377df30d0ef5d9f7b464b0b57baa26d0baaf3"
-  integrity sha512-0Ui7hBofMom6F9N4em357NzsUt0pXDLuuUS1Ojf7Vu7S/LjVjB5zwmY7L4H5wuf5KDOjSmNX8/zG6QfGGc5X/w==
+aws-sdk@2.1179.0:
+  version "2.1179.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1179.0.tgz#c53b44e2f2137159d6092e1fd17d99e20184894f"
+  integrity sha512-QAfefyo20L6wCgWu1g0sOmH7AM822E7Wmdrp1AbFwPpXUBes8uKei2AQqkJmxaDnhAxyk79V7oEiosZYVZOBvg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -494,13 +494,13 @@ dir-glob@^2.2.2:
   dependencies:
     path-type "^3.0.0"
 
-dynamoose@2.8.5:
-  version "2.8.5"
-  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-2.8.5.tgz#3c17cfa56a79d1473f5e81f9aca60720ca177f55"
-  integrity sha512-2Y88TvZKcCYroO3hzMwxYYte8FltVj6SN3HKC4tjm4HiKbNbQbppX8KnsPUIhpFRKc52TXWOvrVhl+PXsHxnTA==
+dynamoose@2.8.6:
+  version "2.8.6"
+  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-2.8.6.tgz#e372ed2742125c7674fd8275865f7ef34bdccabe"
+  integrity sha512-AtoF5aKqSTgorCC8CncZ3cd9pAEe+TERvH/r9iF/Wo00Y+YBD/8/+EJUsWTD06M818m07w/BNYkUYRIBcupj0Q==
   dependencies:
     aws-sdk "^2.968.0"
-    js-object-utilities "^2.0.0"
+    js-object-utilities "^2.1.0"
     source-map-support "^0.5.19"
     uuid "^8.3.2"
 
@@ -1280,10 +1280,10 @@ jmespath@0.16.0:
   resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.16.0.tgz#b15b0a85dfd4d930d43e69ed605943c802785076"
   integrity sha512-9FzQjJ7MATs1tSpnco1K6ayiYE3figslrXA72G2HQ/n76RzvYlofyi5QM+iX4YRs/pu3yzxlVQSST23+dMDknw==
 
-js-object-utilities@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/js-object-utilities/-/js-object-utilities-2.0.0.tgz#79629a32bdcc7a60dced03f669cabc78b35f637c"
-  integrity sha512-d0o5Hnd+9q9mswk8VhU9Fzl+QLce3FvtNlLKV7UTUYjAZuChAKeS/DnuameOpiJAXquqrXLJYUcABxhIWogwpA==
+js-object-utilities@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/js-object-utilities/-/js-object-utilities-2.1.0.tgz#6ea720e85ce4ca25f55bff2ae819be95e4ec60d1"
+  integrity sha512-X62npvVTfyNELV4gPU4jJSzFZbdxk3zH/FxlBrZ6n+AGKpGyhMpsPs00tjtqTLy582zG4bvaG5fuKMm/zA1gng==
 
 json-parse-better-errors@^1.0.1:
   version "1.0.2"
