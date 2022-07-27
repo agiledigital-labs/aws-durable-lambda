@@ -6,7 +6,7 @@ import { Handler } from 'aws-lambda';
  *
  * Does not need to be exposed outside of the aws-durable-lambda package.
  */
-export type TaskMessageBody = {
+export type TaskMessageBody<PayloadType = unknown> = {
   /**
    * The name of the lambda function that executes the long running task
    * that the orchestrator should call.
@@ -17,18 +17,29 @@ export type TaskMessageBody = {
    * running task. Used to retrieve the status and result of the task.
    */
   taskId: string;
+
+  /**
+   * The optional body passed into the submitTask function.
+   * It will be passed into the long running lambda in the event object.
+   */
+  requestPayload: PayloadType | undefined;
 };
 
 /**
  * The event object that is passed into the lambda that the aws-durable-lambda
  * passes into the long running lambda handler.
  */
-export type TaskEvent = {
+export type TaskEvent<PayloadType = unknown> = {
   /**
    * The unique ID of the aws-durable-lambda task that triggered the lambda.
    * Used to retrieve the status and result of the task.
    */
   readonly taskId: string;
+
+  /**
+   * The optional body passed into the submitTask function.
+   */
+  requestPayload: PayloadType | undefined;
 };
 
 /**

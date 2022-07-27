@@ -12,9 +12,10 @@ const orchestrator = async (event: SQSEvent) => {
 
       try {
         const body = JSON.parse(message.body) as TaskMessageBody;
-        const { functionName, taskId } = body;
+        const { functionName, taskId, requestPayload } = body;
         const event: TaskEvent = {
           taskId,
+          requestPayload,
         };
 
         const response = await lambda
@@ -28,7 +29,7 @@ const orchestrator = async (event: SQSEvent) => {
 
         return {
           ...body,
-          response: JSON.stringify(response),
+          response: response.Payload ?? {},
           startedAt,
           finishedAt,
         };

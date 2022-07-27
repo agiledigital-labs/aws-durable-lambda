@@ -11,34 +11,57 @@ This patten is generally used to bypass the maximum AWS API Gateway/Lambda Proxy
 
 The idea is you can use the HTTP to submit a request that will trigger a long-running Lambda. This call will immediately return a response with a HTTP GET URL that allows you to query the status of the task.
 
-Usage is demonstrated in the example projects in the examples folder.
+Usage is demonstrated in the example projects in the [examples folder](./examples).
 
 Usually it would be as simple as adding the following line to your serverless definition file:
 
 ```typescript
-  // serverless.ts
-  plugins: [
-    '@agiledigital/aws-durable-lambda'
-  ]
+// serverless.ts
+plugins: ["@agiledigital/aws-durable-lambda"];
 ```
 
 ```yaml
-  # serverless.yaml
-  plugins:
-  - '@agiledigital/aws-durable-lambda'
+# serverless.yaml
+plugins:
+  - "@agiledigital/aws-durable-lambda"
 ```
 
 Then you can call your lambda using the automatically generated "create-task" endpoint.
 
 ```
-POST https://{api gateway endpoint}/create-task/{full name of the function to invoke}
+POST https://{api gateway endpoint}/create-task/{full name of the function to invoke} -d '{ optional: "payload" }'
 ```
 
 The above POST will return a HTTP URL for you to query the task status.
 
+Calling that will give you a payload like the following:
+
+```json
+{
+  "SubmittedAt": "2022-07-27T11:14:37.251Z",
+  "FunctionName": "adl-example-serverless-esbuild-sandbox-myFunction",
+  "Status": "Processing",
+  "ID": "6f7ca34a-8de6-434f-9337-763d2a075566"
+}
+```
+
+Eventually when you task is complete, the task status query will return something like the following.
+
+```json
+{
+  "SubmittedAt": "2022-07-27T11:14:37.251Z",
+  "FunctionName": "adl-example-serverless-esbuild-sandbox-myFunction",
+  "FinishedAt": "2022-07-27T11:14:48.343Z",
+  "Response": "{\"message\":\"Finished long journey\",\"transformedInput\":\"HELLO WORLD!\"}",
+  "StartedAt": "2022-07-27T11:14:37.949Z",
+  "Status": "Completed",
+  "ID": "6f7ca34a-8de6-434f-9337-763d2a075566"
+}
+```
+
 ## Testing
 
-As we need to inject the required infrastructure into an existing serverless project, 
+As we need to inject the required infrastructure into an existing serverless project,
 the main source of issues will be the interaction with the different bundler/packager
 configurations.
 
@@ -50,8 +73,8 @@ There is currently an automatic CI job that packages each example to ensure that
 that there are no packaging errors. However the automatic CI job does not deploy
 the example to AWS or do any integration testing.
 
-To test it more thoroughly, you can deploy each example individually, 
-or you can use the "examples/deploy-all.sh" to automatically build the plugin, 
+To test it more thoroughly, you can deploy each example individually,
+or you can use the "examples/deploy-all.sh" to automatically build the plugin,
 and deploy all the examples.
 
 ```bash
@@ -81,7 +104,6 @@ curl -s -H 'API_KEY: ${API_KEY}' "${STATUS_URL}" | jq -r ".[0].Status"`
 ```
 
 This is currently a manual process, however we hope to automate this in the future.
-
 
 [ico-build]: https://github.com/agiledigital-labs/aws-durable-lambda/actions/workflows/package.yml/badge.svg
 [ico-serverless]: http://public.serverless.com/badges/v3.svg
