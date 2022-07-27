@@ -1,4 +1,4 @@
-const sqs = (stage) => ({
+const sqs = {
   FunctionTaskQueue: {
     Type: 'AWS::SQS::Queue',
     Properties: {
@@ -8,7 +8,7 @@ const sqs = (stage) => ({
         },
         maxReceiveCount: 5,
       },
-      VisibilityTimeout: 1000
+      VisibilityTimeout: 1000,
     },
   },
   FunctionTaskDeadLetterQueue: {
@@ -24,13 +24,13 @@ const sqs = (stage) => ({
         },
         maxReceiveCount: 5,
       },
-      VisibilityTimeout: 1000
+      VisibilityTimeout: 1000,
     },
   },
   FunctionTaskOutputDeadLetterQueue: {
     Type: 'AWS::SQS::Queue',
     Properties: {},
-  }
-});
+  },
+};
 
 module.exports = sqs;

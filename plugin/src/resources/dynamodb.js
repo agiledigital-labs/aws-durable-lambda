@@ -1,33 +1,33 @@
-const dynamodb = (stage) => ({
+const dynamodb = {
   FunctionTaskTable: {
     Type: 'AWS::DynamoDB::Table',
     Properties: {
       AttributeDefinitions: [
         {
           AttributeName: 'ID',
-          AttributeType: 'S'
+          AttributeType: 'S',
         },
         {
           AttributeName: 'FunctionName',
-          AttributeType: 'S'
-        }
+          AttributeType: 'S',
+        },
       ],
       KeySchema: [
         {
           AttributeName: 'ID',
-          KeyType: 'HASH'
+          KeyType: 'HASH',
         },
         {
           AttributeName: 'FunctionName',
-          KeyType: 'RANGE'
-        }
+          KeyType: 'RANGE',
+        },
       ],
       ProvisionedThroughput: {
         ReadCapacityUnits: 1,
-        WriteCapacityUnits: 1
-      }
-    }
-  }
-});
+        WriteCapacityUnits: 1,
+      },
+    },
+  },
+};
 
 module.exports = dynamodb;

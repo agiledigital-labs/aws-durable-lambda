@@ -1,27 +1,30 @@
-"use strict";
+'use strict';
 
-const { join } = require("path");
-const dynamodb = require("./resources/dynamodb");
-const functions = require("./resources/functions");
-const sqs = require("./resources/sqs");
-const { copy, remove } = require('fs-extra')
+const { join } = require('path');
+const dynamodb = require('./resources/dynamodb');
+const sqs = require('./resources/sqs');
+const { copy, remove } = require('fs-extra');
 
-const functionStagingDirectoryName = ".adl";
+import iam from './resources/iam';
+import functions from './resources/functions';
+
+const functionStagingDirectoryName = '.adl';
 const getFunctionStagingDirectory = (serverless) => {
   const basePath = serverless.config.servicePath;
   return join(basePath, functionStagingDirectoryName);
-}
+};
 
 function addResources(serverless) {
   const service = serverless.service.service;
-  const stage = serverless.service.provider.stage || "dist";
+  const stage = serverless.service.provider.stage || 'dist';
+  const provider = serverless.service.provider;
   const functionStagingDirectory = getFunctionStagingDirectory(serverless);
-
 
   serverless.service.resources.Resources = {
     ...serverless.service.resources.Resources,
-    ...sqs(stage),
-    ...dynamodb(stage),
+    ...sqs,
+    ...dynamodb,
+    ...iam,
   };
 
   serverless.service.functions = {
@@ -29,28 +32,53 @@ function addResources(serverless) {
     ...functions(service, stage, functionStagingDirectoryName),
   };
 
+  serverless.service.provider.iam = {
+    ...(provider.iam ?? {}),
+    role: {
+      ...(provider.iam?.role ?? {}),
+      managedPolicies: [
+        ...(provider.iam?.role?.managedPolicies ?? []),
+        // Reference any of the IAM policies defined in CloudFormation
+        ...Object.keys(iam).map((policyLogicalName) => ({
+          Ref: policyLogicalName,
+        })),
+      ],
+    },
+  };
+
   serverless.service.provider.environment = {
     ...serverless.service.provider.environment,
-    FUNCTION_TASK_QUEUE_NAME: { "Fn::GetAtt": ["FunctionTaskQueue", "QueueName"] },
-    FUNCTION_TASK_OUT_PUT_QUEUE_NAME: { "Fn::GetAtt": ["FunctionTaskOutputQueue", "QueueName"] },
-    FUNCTION_TASK_OUTPUT_QUEUE_URL: { Ref: "FunctionTaskOutputQueue" },
-    FUNCTION_TASK_QUEUE_URL: { Ref: "FunctionTaskQueue" },
-    FUNCTION_TASK_TABLE_NAME: { Ref: "FunctionTaskTable" },
+    FUNCTION_TASK_QUEUE_NAME: {
+      'Fn::GetAtt': ['FunctionTaskQueue', 'QueueName'],
+    },
+    FUNCTION_TASK_OUT_PUT_QUEUE_NAME: {
+      'Fn::GetAtt': ['FunctionTaskOutputQueue', 'QueueName'],
+    },
+    FUNCTION_TASK_OUTPUT_QUEUE_URL: { Ref: 'FunctionTaskOutputQueue' },
+    FUNCTION_TASK_QUEUE_URL: { Ref: 'FunctionTaskQueue' },
+    FUNCTION_TASK_TABLE_NAME: { Ref: 'FunctionTaskTable' },
   };
 }
 
 async function cleanupBoilerplateFunctionCode(serverless) {
   const functionStagingDirectory = getFunctionStagingDirectory(serverless);
-  serverless.cli.log(`[aws-durable-lambda] Cleaning up boilerplate function code at [${functionStagingDirectory}]...`);
+  serverless.cli.log(
+    `[aws-durable-lambda] Cleaning up boilerplate function code at [${functionStagingDirectory}]...`
+  );
   await remove(functionStagingDirectory);
 }
 
 async function copyBoilerplateFunctionCode(serverless) {
   const functionStagingDirectory = getFunctionStagingDirectory(serverless);
   const basePath = serverless.config.servicePath;
-  const source = join(basePath, "node_modules/@agiledigital/aws-durable-lambda/lib/functions");
-  const destination = join(functionStagingDirectory, "functions");
-  serverless.cli.log(`[aws-durable-lambda] Copying boilerplate function code from [${source}] to [${destination}]...`);
+  const source = join(
+    basePath,
+    'node_modules/@agiledigital/aws-durable-lambda/lib/functions'
+  );
+  const destination = join(functionStagingDirectory, 'functions');
+  serverless.cli.log(
+    `[aws-durable-lambda] Copying boilerplate function code from [${source}] to [${destination}]...`
+  );
   await copy(source, destination);
 }
 
@@ -58,11 +86,11 @@ class AWSDurableLambda {
   constructor(serverless) {
     this.hooks = {
       //this.serverless.config.servicePath
-      "package:cleanup": async function () {
+      'package:cleanup': async function () {
         await cleanupBoilerplateFunctionCode(serverless);
         return copyBoilerplateFunctionCode(serverless);
       },
-      "package:finalize": async function () {
+      'package:finalize': async function () {
         await cleanupBoilerplateFunctionCode(serverless);
       },
 

@@ -1,7 +1,7 @@
 {
   "name": "adl-example-serverless-webpack",
   "version": "1.0.0",
-  "description": "An project that demonstrates how the aws-durable-lambda Serverless plugin in used",
+  "description": "An project that demonstrates how the aws-durable-lambda Serverless plugin is used",
   "main": "serverless.ts",
   "scripts": {},
   "engines": {
