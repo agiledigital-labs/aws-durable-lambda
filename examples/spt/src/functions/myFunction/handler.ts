@@ -34,4 +34,4 @@ const myFunction: TaskHandler = async (event: TaskEvent<TaskPayload>) => {
   return result;
 };
 
-export const main = myFunction;
+module.exports.main = myFunction;
