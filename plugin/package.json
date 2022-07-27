@@ -29,7 +29,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/node": "16.11.45",
     "@types/uuid": "8.3.4",
-    "aws-sdk": "2.1181.0",
+    "aws-sdk": "2.1182.0",
     "dynamoose": "2.8.6",
     "esbuild": "0.14.50",
     "esbuild-node-externals": "^1.4.1",
