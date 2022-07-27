@@ -2,6 +2,7 @@ import { functionTaskTable } from '@libs/dynamodb';
 import { APIGatewayEvent } from 'aws-lambda';
 import sqs from '../../libs/awsSqs';
 import { v4 } from 'uuid';
+import { TaskMessageBody } from '@libs/types';
 
 const submitTask = async (event: APIGatewayEvent) => {
   try {
@@ -13,13 +14,17 @@ const submitTask = async (event: APIGatewayEvent) => {
 
     const submittedAt = new Date().toISOString();
 
-    await sqs.sendMessage({
-      QueueUrl: process.env.FUNCTION_TASK_QUEUE_URL,
-      MessageBody: JSON.stringify({
-        functionName,
-        taskId
+    const body: TaskMessageBody = {
+      functionName,
+      taskId,
+    };
+
+    await sqs
+      .sendMessage({
+        QueueUrl: process.env.FUNCTION_TASK_QUEUE_URL,
+        MessageBody: JSON.stringify(body),
       })
-    }).promise();
+      .promise();
 
     await functionTaskTable.Model.create({
       ID: taskId,
