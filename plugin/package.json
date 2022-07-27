@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "A Serverless plugin to automate using AWS SQS, AWS DynamoDB to achieve a durable function",
   "main": "lib/aws-durable-lambda.js",
+  "types": "lib/libs/types.d.ts",
   "files": [
     "lib/**/*"
   ],
   "scripts": {
     "prepare": "run-s build",
     "build": "rimraf ./lib && tsc && node ./esbuild.config.js",
-    "format": "prettier --write src/**/*.js src/**/*.ts",
-    "format-check": "prettier --check src/**/*.js src/**/*.ts"
+    "format": "prettier --write src",
+    "format-check": "prettier --check src"
   },
   "engines": {
     "node": ">=14.15.0"

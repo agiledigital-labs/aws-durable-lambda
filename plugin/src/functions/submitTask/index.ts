@@ -6,8 +6,8 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'create-task/{functionName}'
-      }
-    }
-  ]
-}
+        path: 'create-task/{functionName}',
+      },
+    },
+  ],
+};

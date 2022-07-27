@@ -6,8 +6,8 @@ export default {
     {
       http: {
         method: 'get',
-        path: 'task/{taskId}'
-      }
-    }
-  ]
-}
+        path: 'task/{taskId}',
+      },
+    },
+  ],
+};

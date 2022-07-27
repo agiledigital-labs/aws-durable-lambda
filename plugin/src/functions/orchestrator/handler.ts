@@ -40,17 +40,21 @@ const orchestrator = async (event: SQSEvent) => {
 
   console.log('Finished processing', JSON.stringify(results, null, 2));
 
-  await Promise.all(results.map(async (result) => {
-    return sqs.sendMessage({
-      QueueUrl: process.env.FUNCTION_TASK_OUTPUT_QUEUE_URL,
-      MessageBody: JSON.stringify({
-        ...result,
-        status: result.error ? 'Failed' : 'Completed'
-      })
-    }).promise();
-  }));
+  await Promise.all(
+    results.map(async (result) => {
+      return sqs
+        .sendMessage({
+          QueueUrl: process.env.FUNCTION_TASK_OUTPUT_QUEUE_URL,
+          MessageBody: JSON.stringify({
+            ...result,
+            status: result.error ? 'Failed' : 'Completed',
+          }),
+        })
+        .promise();
+    })
+  );
 
   console.log('Outputs sent to the queue');
-}
+};
 
 export const main = orchestrator;

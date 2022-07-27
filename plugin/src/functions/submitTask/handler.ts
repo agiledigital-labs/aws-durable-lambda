@@ -10,7 +10,12 @@ const submitTask = async (event: APIGatewayEvent) => {
 
     const taskId = v4();
 
-    const apiUrl = event.headers['X-Forwarded-Proto'] + '://' + event.headers['Host'] + '/' + event.requestContext['stage'];
+    const apiUrl =
+      event.headers['X-Forwarded-Proto'] +
+      '://' +
+      event.headers['Host'] +
+      '/' +
+      event.requestContext['stage'];
 
     const submittedAt = new Date().toISOString();
 
@@ -37,7 +42,7 @@ const submitTask = async (event: APIGatewayEvent) => {
       statusCode: 200,
       body: JSON.stringify({
         taskId,
-        statusUrl: `${apiUrl}/task/${taskId}`
+        statusUrl: `${apiUrl}/task/${taskId}`,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -49,13 +54,13 @@ const submitTask = async (event: APIGatewayEvent) => {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: e.message
+        message: e.message,
       }),
       headers: {
         'Content-Type': 'application/json',
       },
     };
   }
-}
+};
 
 export const main = submitTask;
