@@ -12,6 +12,7 @@ export type TaskMessageBody<PayloadType = unknown> = {
    * that the orchestrator should call.
    */
   functionName: string;
+
   /**
    * The unique ID of the aws-durable-lambda task associated with the long
    * running task. Used to retrieve the status and result of the task.
