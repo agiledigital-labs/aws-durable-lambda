@@ -3,6 +3,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+source './assert.sh'
 #
 # Runs through each example deployed with "deploy-all.sh" and 
 # gives each a smoke test by calling the deployed API and checking
@@ -36,17 +37,22 @@ do
     echo "API key retrieved."
 
     API_BASE_URL="https://${API_ID}.execute-api.${REGION}.amazonaws.com/${STAGE}"
-    STATUS_URL=`curl --fail --silent --show-error -X POST -H 'API_KEY: ${API_KEY}' "${API_BASE_URL}/create-task/${API_NAME}-myFunction" | jq -r ".statusUrl"`
+    STATUS_URL=`curl --fail --silent --show-error -X POST -H 'API_KEY: ${API_KEY}' "${API_BASE_URL}/create-task/${API_NAME}-myFunction" -d '{ "input": "hello world!" }' | jq -r ".statusUrl"`
     
     echo "Polling for status every [${POLL_PERIOD}] seconds..."
     
     STATUS="Unknown"
     TARGET_STATUS="Completed"
+    TARGET_RESPONSE="HELLO WORLD!"
     until [ "$STATUS" == "Completed" ]
     do
         sleep "${POLL_PERIOD}"
-        STATUS=`curl --fail --silent --show-error -H 'API_KEY: ${API_KEY}' "${STATUS_URL}" | jq -r ".[0].Status"`
+        TASK_DATA=`curl --fail --silent --show-error -H 'API_KEY: ${API_KEY}' "${STATUS_URL}"`
+        STATUS=`jq -r ".[0].Status" <<< "${TASK_DATA}"`
+        RESPONSE=`jq -r ".[0].Response // empty | fromjson | .transformedInput" <<< "${TASK_DATA}"`
         echo "Status is: '${STATUS}'. Waiting for '${TARGET_STATUS}'"
     done
-    echo "Status is '${TARGET_STATUS}'. Looks like the durable lambda is working!"
+    echo "Status is '${TARGET_STATUS}'. Looks like the durable lambda completed. Verifying response..."
+    assert_eq "$RESPONSE" "$TARGET_RESPONSE" "Response should be the input payload in uppercase"
+    echo "Response looks OK!"
 done

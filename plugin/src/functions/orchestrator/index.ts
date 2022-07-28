@@ -7,6 +7,6 @@ export default {
     {
       sqs: { arn: { 'Fn::GetAtt': ['FunctionTaskQueue', 'Arn'] } },
       batchSize: 1,
-    }
-  ]
-}
+    },
+  ],
+};

@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "lib": ["ES2020"],
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -9,10 +9,11 @@
     "sourceMap": true,
     "target": "ES2020",
     "outDir": "lib",
+    "module": "CommonJS",
     // The aws-durable-lambda plugin is packaged as js, so we need to allow
     // the compiler to pull in js
     // TODO: Will this be annoying to consumers of the plugin? Is there a way to get it to package without compiling?
-    "allowJs": true,
+    "allowJs": true
   },
   "include": ["src/**/*.ts", "serverless.ts"],
   "exclude": [

@@ -7,9 +7,11 @@ const getTask = async (event: APIGatewayEvent) => {
 
     console.log(taskId, event.pathParameters);
 
-    const result = await functionTaskTable.query({
-      ID: taskId
-    }).exec();
+    const result = await functionTaskTable
+      .query({
+        ID: taskId,
+      })
+      .exec();
 
     return {
       statusCode: 200,
@@ -24,13 +26,13 @@ const getTask = async (event: APIGatewayEvent) => {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: e.message
+        message: e.message,
       }),
       headers: {
         'Content-Type': 'application/json',
       },
     };
   }
-}
+};
 
 export const main = getTask;
