@@ -3,6 +3,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+STAGE="${STAGE:-sandbox}"
+
 #
 # Runs through each example and deploys it to test that it is working
 #

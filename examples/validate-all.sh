@@ -15,7 +15,7 @@ source './assert.sh'
 
 
 REGION="${AWS_DEFAULT_REGION:=ap-southeast-2}"
-STAGE="sandbox"
+STAGE="${STAGE:-sandbox}"
 POLL_PERIOD=5
 
 for dir in *

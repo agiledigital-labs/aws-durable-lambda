@@ -1,0 +1,36 @@
+name: "Integration test"
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    # Don't build if Semantic Release pushes a ci skip commit
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+
+    # In the future we may want to run the test on all three supported platforms
+    # but for now this should get enough value
+    runs-on: ubuntu-latest
+
+    env:
+      STAGE: int-test
+
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.DEPLOYMENT_ROLE_ARN }}
+          aws-region: ap-southeast-2
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/fermium
+
+      - run: ./deploy-all.sh
+        name: Deploy example projects
+        working-directory: examples
+      - run: ./validate-all.sh
+        name: Validate example projects
+        working-directory: examples
