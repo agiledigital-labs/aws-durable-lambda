@@ -8,9 +8,7 @@
     "node": ">=14.15.0"
   },
   "dependencies": {
-    "@agiledigital/aws-durable-lambda": "../../plugin",
-    "aws-sdk": "^2.1042.0",
-    "dynamoose": "^2.8.3"
+    "@agiledigital/aws-durable-lambda": "../../plugin"
   },
   "devDependencies": {
     "@serverless/typescript": "3.3.0",

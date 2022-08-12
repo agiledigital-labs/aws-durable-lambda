@@ -32,6 +32,7 @@ const serverlessConfiguration: AWS = {
     webpack: {
       // TODO: Work out why includeModules/node externals doesn't work properly with ADL plugin
       packager: 'yarn',
+      includeModules: true,
     },
   },
 };

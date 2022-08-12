@@ -18,11 +18,8 @@
   },
   "dependencies": {
     "fs-extra": "^10.1.0",
-    "uuid": "^8.3.2"
-  },
-  "peerDependencies": {
-    "aws-sdk": ">=2.1042.0",
-    "dynamoose": ">=2.8.3"
+    "uuid": "^8.3.2",
+    "dynamoose": "3.0.0"
   },
   "devDependencies": {
     "@serverless/typescript": "3.21.0",
@@ -31,7 +28,6 @@
     "@types/node": "16.11.52",
     "@types/uuid": "8.3.4",
     "aws-sdk": "2.1199.0",
-    "dynamoose": "3.0.0",
     "esbuild": "0.15.5",
     "esbuild-node-externals": "1.4.1",
     "esbuild-node-tsc": "2.0.2",
