@@ -31,7 +31,7 @@
     "@types/node": "16.11.49",
     "@types/uuid": "8.3.4",
     "aws-sdk": "2.1196.0",
-    "dynamoose": "2.8.7",
+    "dynamoose": "3.0.0",
     "esbuild": "0.15.5",
     "esbuild-node-externals": "1.4.1",
     "esbuild-node-tsc": "2.0.2",
