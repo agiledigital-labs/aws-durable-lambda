@@ -28,7 +28,7 @@
     "@serverless/typescript": "3.21.0",
     "@types/aws-lambda": "8.10.102",
     "@types/fs-extra": "9.0.13",
-    "@types/node": "16.11.51",
+    "@types/node": "16.11.52",
     "@types/uuid": "8.3.4",
     "aws-sdk": "2.1199.0",
     "dynamoose": "3.0.0",
