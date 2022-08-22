@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "A Serverless plugin to automate using AWS SQS, AWS DynamoDB to achieve a durable function",
   "main": "lib/aws-durable-lambda.js",
-  "types": "lib/libs/types.d.ts",
+  "types": "types/libs/types.d.ts",
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "types/**/*"
   ],
   "scripts": {
     "prepare": "run-s build",
