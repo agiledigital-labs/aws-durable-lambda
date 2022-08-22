@@ -31,7 +31,7 @@ const serverlessConfiguration: AWS = {
   },
   custom: {
     esbuild: {
-      external: ['@agiledigital/aws-durable-lambda'],
+      packager: 'yarn',
       bundle: true,
       minify: false,
       sourcemap: true,
