@@ -1,4 +1,3 @@
-const pkg = require('./package.json');
 const esbuild = require('esbuild');
 
 esbuild
