@@ -11,7 +11,7 @@ esbuild
     ],
     outdir: 'lib/',
     bundle: true,
-    minify: false,
+    minify: true,
     platform: 'node',
     sourcemap: true,
     target: 'node14',
