@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "prepare": "run-s build",
-    "build": "rimraf ./lib && tsc && node ./esbuild.config.js",
+    "build": "rimraf ./lib ./types && tsc && node ./esbuild.config.js",
     "format": "prettier --write src esbuild.config.js package.json tsconfig.json tsconfig.paths.json",
     "format-check": "prettier --check src esbuild.config.js package.json tsconfig.json tsconfig.paths.json"
   },
