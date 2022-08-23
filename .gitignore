@@ -4,6 +4,7 @@ jspm_packages
 
 # Serverless directories
 .serverless
+.build
 
 # Webpack directories
 .webpack
@@ -26,3 +27,6 @@ types
 
 # yarn
 yarn-error.log
+
+# aws-durable-lambda
+.adl
