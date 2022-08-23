@@ -1,5 +1,5 @@
-import { Lambda } from 'aws-sdk';
+import { LambdaClient } from '@aws-sdk/client-lambda';
 
-const lambda = new Lambda();
+const lambda = new LambdaClient({});
 
-export default lambda;
+export { lambda };

@@ -1,5 +1,7 @@
-import sqs from '@libs/awsSqs';
-import lambda from '@libs/lambda';
+import { sqs } from '@libs/awsSqs';
+import { lambda } from '@libs/lambda';
+import { SendMessageCommand } from '@aws-sdk/client-sqs';
+import { InvokeCommand } from '@aws-sdk/client-lambda';
 import { TaskEvent, TaskMessageBody } from '@libs/types';
 import { SQSEvent } from 'aws-lambda';
 
@@ -18,12 +20,11 @@ const orchestrator = async (event: SQSEvent) => {
           requestPayload,
         };
 
-        const response = await lambda
-          .invoke({
-            FunctionName: functionName,
-            Payload: JSON.stringify(event),
-          })
-          .promise();
+        const command = new InvokeCommand({
+          FunctionName: functionName,
+          Payload: Buffer.from(JSON.stringify(event)),
+        });
+        const response = await lambda.send(command);
 
         const finishedAt = new Date().toISOString();
 
@@ -43,15 +44,14 @@ const orchestrator = async (event: SQSEvent) => {
 
   await Promise.all(
     results.map(async (result) => {
-      return sqs
-        .sendMessage({
-          QueueUrl: process.env.FUNCTION_TASK_OUTPUT_QUEUE_URL,
-          MessageBody: JSON.stringify({
-            ...result,
-            status: result.error ? 'Failed' : 'Completed',
-          }),
-        })
-        .promise();
+      const command = new SendMessageCommand({
+        QueueUrl: process.env.FUNCTION_TASK_OUTPUT_QUEUE_URL,
+        MessageBody: JSON.stringify({
+          ...result,
+          status: result.error ? 'Failed' : 'Completed',
+        }),
+      });
+      return sqs.send(command);
     })
   );
 

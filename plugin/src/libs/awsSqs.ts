@@ -1,5 +1,5 @@
-import { SQS } from 'aws-sdk';
+import { SQSClient } from '@aws-sdk/client-sqs';
 
-const sqs = new SQS();
+const sqs = new SQSClient({});
 
-export default sqs;
+export { sqs };
