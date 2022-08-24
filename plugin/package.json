@@ -25,7 +25,7 @@
     "@serverless/typescript": "3.21.0",
     "@types/aws-lambda": "8.10.102",
     "@types/fs-extra": "9.0.13",
-    "@types/node": "16.11.55",
+    "@types/node": "16.11.56",
     "@types/uuid": "8.3.4",
     "aws-sdk": "2.1201.0",
     "esbuild": "0.15.5",
