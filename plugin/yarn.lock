@@ -791,10 +791,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@2.1202.0:
-  version "2.1202.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1202.0.tgz#5a8349d02d2092477e2a9b621c00e96eaf49cbf3"
-  integrity sha512-fFoEX+Id8/h/RIHw/gTZl3GnFF+RaXRmXueF7qCOqHm4g7mFOOgUUbc4BLbZ4gCDYRiyxNlGgija/je8EhLNRw==
+aws-sdk@2.1203.0:
+  version "2.1203.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1203.0.tgz#03289662a1d05084b7f8db602136cbac963ff061"
+  integrity sha512-6HeVddh4HfsH6uXkadergui6cQW5BN2gxVFoxhGytD6lv15xrYgWALQ3iOfcmPg0OLafgnC5RAdFmyPnb7McVw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -923,21 +923,21 @@ diff@^4.0.1:
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
 
-dynamoose-utils@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/dynamoose-utils/-/dynamoose-utils-3.0.0.tgz#2279ff6266a37026b655de9cb5f9e703e86f316b"
-  integrity sha512-Vq3mXWlnRDMkJe0mSRVlckn2EtzEo/y2LUyvErQdOncDZm2Oe5MS/euHjNAxZuPt2qZ/gzSyTwK6P3K1gqcXog==
+dynamoose-utils@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/dynamoose-utils/-/dynamoose-utils-3.0.2.tgz#da1224fcb4e451c7a8affdac1ab41d0c1613387e"
+  integrity sha512-O/NNmGeUVXomBDWBpGkbjft/jpl4vfthbWun8UvCuDDkEXEalgxu8XYP6dSYwMTwKEcTZNRaX5E/Dp9A1fWR+w==
   dependencies:
     js-object-utilities "^2.1.0"
 
-dynamoose@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-3.0.0.tgz#0c0b2bb123eb80740173077b134be29ccb05983b"
-  integrity sha512-j9KWtuumIBzoLJBNLuONe7I2Xp0QDDdaYutjG7bGLgOjtNKZY2z2wihlEK3vfbAhvt+ckAFwvXP6nQvcgur17Q==
+dynamoose@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/dynamoose/-/dynamoose-3.0.2.tgz#5945aeea0dd6e7d093c56150799129d7d8921d09"
+  integrity sha512-cqciPyxCXpNNhJKPutgnN4nWVlnCmkJrqyYD5PFWcTfqhL83tKAGFGa9nIFIPvqoo/wjPWNYw+UUVvDi3Hs79w==
   dependencies:
     "@aws-sdk/client-dynamodb" "^3.142.0"
     "@aws-sdk/util-dynamodb" "^3.142.0"
-    dynamoose-utils "^3.0.0"
+    dynamoose-utils "^3.0.2"
     js-object-utilities "^2.1.0"
 
 emoji-regex@^8.0.0:
