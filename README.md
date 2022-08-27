@@ -7,7 +7,7 @@ Warning: This plugin is currently in a pre-release state and is being actively w
 
 This is a serverless plugin that automates using AWS SQS and AWS DynamoDB make a function "durable".
 
-This patten is generally used to bypass the maximum AWS API Gateway/Lambda Proxy timeout.
+This pattern is generally used to bypass the maximum AWS API Gateway/Lambda Proxy timeout.
 
 The idea is you can use the HTTP to submit a request that will trigger a long-running Lambda. This call will immediately return a response with a HTTP GET URL that allows you to query the status of the task.
 
