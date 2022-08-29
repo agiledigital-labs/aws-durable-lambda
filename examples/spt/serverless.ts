@@ -28,9 +28,11 @@ const serverlessConfiguration: AWS = {
   package: {
     individually: true,
     patterns: [
-      '!node_modules/aws-sdk/**',
-      // Not sure why I have to add this as it is a dev dependency and _should_ be automatically excluded
-      '!node_modules/@agiledigital/**',
+      // Not sure why I have to add this as all the dependencies are
+      // dev dependencies and _should_ be automatically excluded
+      // You will probably have your own packaging config for your
+      // own project and will not have to include this
+      '!node_modules/**',
     ],
   },
   resources: {

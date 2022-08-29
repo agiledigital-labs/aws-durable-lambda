@@ -31,7 +31,6 @@ const serverlessConfiguration: AWS = {
   custom: {
     webpack: {
       packager: 'yarn',
-      includeModules: true,
     },
   },
 };

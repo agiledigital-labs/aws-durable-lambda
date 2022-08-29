@@ -1,9 +1,14 @@
-import { sqs } from '@libs/awsSqs';
-import { lambda } from '@libs/lambda';
-import { SendMessageCommand } from '@aws-sdk/client-sqs';
-import { InvokeCommand } from '@aws-sdk/client-lambda';
-import { TaskEvent, TaskMessageBody } from '@libs/types';
-import { SQSEvent } from 'aws-lambda';
+import type { SQSEvent } from 'aws-lambda';
+import type {
+  TaskEvent,
+  TaskMessageBody,
+} from '@agiledigital/aws-durable-lambda';
+
+import {
+  sendSqsMessage,
+  invokeLambdaFunction,
+} from '@agiledigital/aws-durable-lambda';
+import { TextDecoder } from 'util';
 
 const orchestrator = async (event: SQSEvent) => {
   const messages = event.Records;
@@ -20,17 +25,25 @@ const orchestrator = async (event: SQSEvent) => {
           requestPayload,
         };
 
-        const command = new InvokeCommand({
-          FunctionName: functionName,
-          Payload: Buffer.from(JSON.stringify(event)),
-        });
-        const response = await lambda.send(command);
+        const response = await invokeLambdaFunction(functionName, event);
 
         const finishedAt = new Date().toISOString();
 
+        const decoder = new TextDecoder('utf-8');
+
+        const payload =
+          response.Payload === undefined
+            ? {}
+            : decoder.decode(response.Payload);
+
+        console.log({
+          oops: 'yay',
+          payload,
+        });
+
         return {
           ...body,
-          response: response.Payload ?? {},
+          response: payload,
           startedAt,
           finishedAt,
         };
@@ -43,16 +56,12 @@ const orchestrator = async (event: SQSEvent) => {
   console.log('Finished processing', JSON.stringify(results, null, 2));
 
   await Promise.all(
-    results.map(async (result) => {
-      const command = new SendMessageCommand({
-        QueueUrl: process.env.FUNCTION_TASK_OUTPUT_QUEUE_URL,
-        MessageBody: JSON.stringify({
-          ...result,
-          status: result.error ? 'Failed' : 'Completed',
-        }),
-      });
-      return sqs.send(command);
-    })
+    results.map(async (result) =>
+      sendSqsMessage(process.env.FUNCTION_TASK_OUTPUT_QUEUE_URL, {
+        ...result,
+        status: result.error ? 'Failed' : 'Completed',
+      })
+    )
   );
 
   console.log('Outputs sent to the queue');

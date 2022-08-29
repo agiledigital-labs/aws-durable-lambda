@@ -3,7 +3,7 @@ const myFunction = require('./src/functions/myFunction');
 const serverlessConfiguration = {
   service: 'adl-example-serverless-jetpack',
   frameworkVersion: '3',
-  plugins: ['serverless-jetpack', '@agiledigital/aws-durable-lambda'],
+  plugins: ['@agiledigital/aws-durable-lambda', 'serverless-jetpack'],
   provider: {
     name: 'aws',
     region: 'ap-southeast-2',
@@ -23,7 +23,9 @@ const serverlessConfiguration = {
   functions: {
     myFunction,
   },
-  package: { individually: true, exclude: ['**/node_modules/aws-sdk/**'] },
+  package: {
+    individually: true,
+  },
   resources: {
     Resources: {},
   },

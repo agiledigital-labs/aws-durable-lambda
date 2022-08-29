@@ -1,9 +1,11 @@
-import { functionTaskTable } from '@libs/dynamodb';
-import { APIGatewayEvent } from 'aws-lambda';
-import { sqs } from '../../libs/awsSqs';
-import { SendMessageCommand } from '@aws-sdk/client-sqs';
-import { v4 } from 'uuid';
-import { TaskMessageBody } from '@libs/types';
+import type { APIGatewayEvent } from 'aws-lambda';
+
+import {
+  sendSqsMessage,
+  functionTaskTable,
+  TaskMessageBody,
+  generateTaskId,
+} from '@agiledigital/aws-durable-lambda';
 
 /**
  * Takes the body attribute that is passed in by the API Gateway proxy event
@@ -29,7 +31,7 @@ const submitTask = async (event: APIGatewayEvent) => {
   try {
     const functionName = event.pathParameters['functionName'];
 
-    const taskId = v4();
+    const taskId = generateTaskId();
 
     const apiUrl =
       event.headers['X-Forwarded-Proto'] +
@@ -47,11 +49,7 @@ const submitTask = async (event: APIGatewayEvent) => {
       requestPayload,
     };
 
-    const command = new SendMessageCommand({
-      QueueUrl: process.env.FUNCTION_TASK_QUEUE_URL,
-      MessageBody: JSON.stringify(body),
-    });
-    await sqs.send(command);
+    await sendSqsMessage(process.env.FUNCTION_TASK_QUEUE_URL, body);
 
     await functionTaskTable.Model.create({
       ID: taskId,

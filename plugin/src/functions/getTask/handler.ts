@@ -1,5 +1,6 @@
-import { functionTaskTable } from '@libs/dynamodb';
-import { APIGatewayEvent } from 'aws-lambda';
+import type { APIGatewayEvent } from 'aws-lambda';
+
+import { functionTaskTable } from '@agiledigital/aws-durable-lambda';
 
 const getTask = async (event: APIGatewayEvent) => {
   try {

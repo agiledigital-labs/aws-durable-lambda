@@ -25,54 +25,75 @@ const functionName = (service: string, stage: string, name: string) =>
 const functions = (
   service: string,
   stage: string,
-  functionStagingDirectoryName: string
-) => ({
-  getTask: {
-    name: functionName(service, stage, 'get-task'),
-    handler: `${functionStagingDirectoryName}/functions/getTask/handler.main`,
-    events: [
+  functionStagingDirectoryName: string,
+  layerName: string,
+  pluginModulePath: string
+) => {
+  const commonConfig = {
+    layers: [
       {
-        http: {
-          method: 'get',
-          path: 'task/{taskId}',
+        Ref: layerName,
+      },
+    ],
+    // Makes serverless-jetpack work correctly, ignored by everything else
+    jetpack: {
+      trace: {
+        ignores: [pluginModulePath],
+      },
+    },
+  };
+  return {
+    getTask: {
+      name: functionName(service, stage, 'get-task'),
+      handler: `${functionStagingDirectoryName}/functions/getTask/handler.main`,
+      events: [
+        {
+          http: {
+            method: 'get',
+            path: 'task/{taskId}',
+          },
         },
-      },
-    ],
-  },
-  orchestrator: {
-    name: functionName(service, stage, 'orchestrator'),
-    handler: `${functionStagingDirectoryName}/functions/orchestrator/handler.main`,
-    timeout: 900,
-    events: [
-      {
-        sqs: { arn: { 'Fn::GetAtt': ['FunctionTaskQueue', 'Arn'] } },
-        batchSize: 1,
-      },
-    ],
-  },
-  reporter: {
-    name: functionName(service, stage, 'reporter'),
-    handler: `${functionStagingDirectoryName}/functions/reporter/handler.main`,
-    timeout: 900,
-    events: [
-      {
-        sqs: { arn: { 'Fn::GetAtt': ['FunctionTaskOutputQueue', 'Arn'] } },
-        batchSize: 1,
-      },
-    ],
-  },
-  submitTask: {
-    name: functionName(service, stage, 'submit-task'),
-    handler: `${functionStagingDirectoryName}/functions/submitTask/handler.main`,
-    events: [
-      {
-        http: {
-          method: 'post',
-          path: 'create-task/{functionName}',
+      ],
+      ...commonConfig,
+    },
+    orchestrator: {
+      name: functionName(service, stage, 'orchestrator'),
+      handler: `${functionStagingDirectoryName}/functions/orchestrator/handler.main`,
+      timeout: 900,
+      events: [
+        {
+          sqs: { arn: { 'Fn::GetAtt': ['FunctionTaskQueue', 'Arn'] } },
+          batchSize: 1,
         },
-      },
-    ],
-  },
-});
+      ],
+      ...commonConfig,
+    },
+    reporter: {
+      name: functionName(service, stage, 'reporter'),
+      handler: `${functionStagingDirectoryName}/functions/reporter/handler.main`,
+      timeout: 900,
+      events: [
+        {
+          sqs: { arn: { 'Fn::GetAtt': ['FunctionTaskOutputQueue', 'Arn'] } },
+          batchSize: 1,
+        },
+      ],
+      ...commonConfig,
+    },
+    submitTask: {
+      name: functionName(service, stage, 'submit-task'),
+      handler: `${functionStagingDirectoryName}/functions/submitTask/handler.main`,
+      events: [
+        {
+          http: {
+            method: 'post',
+            path: 'create-task/{functionName}',
+          },
+        },
+      ],
+      ...commonConfig,
+    },
+  };
+};
 
 export default functions;

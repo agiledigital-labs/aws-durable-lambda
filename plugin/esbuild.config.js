@@ -11,10 +11,10 @@ esbuild
     ],
     outdir: 'lib/',
     bundle: true,
-    minify: true,
+    minify: false,
     platform: 'node',
     sourcemap: true,
     target: 'node14',
-    external: ['aws-sdk'],
+    external: ['aws-sdk', '@agiledigital/aws-durable-lambda'],
   })
   .catch(() => process.exit(1));

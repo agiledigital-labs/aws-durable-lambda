@@ -1,5 +1,6 @@
-import { functionTaskTable } from '@libs/dynamodb';
-import { SQSEvent } from 'aws-lambda';
+import type { SQSEvent } from 'aws-lambda';
+
+import { functionTaskTable } from '@agiledigital/aws-durable-lambda';
 
 type TaskResultBody = {
   functionName: string;
