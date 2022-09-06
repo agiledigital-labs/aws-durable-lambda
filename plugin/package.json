@@ -23,11 +23,11 @@
   },
   "devDependencies": {
     "@serverless/typescript": "3.21.0",
-    "@types/aws-lambda": "8.10.102",
+    "@types/aws-lambda": "8.10.103",
     "@types/fs-extra": "9.0.13",
     "@types/node": "16.11.57",
     "@types/uuid": "8.3.4",
-    "aws-sdk": "2.1209.0",
+    "aws-sdk": "2.1210.0",
     "esbuild": "0.15.7",
     "esbuild-node-externals": "1.5.0",
     "esbuild-node-tsc": "2.0.2",
