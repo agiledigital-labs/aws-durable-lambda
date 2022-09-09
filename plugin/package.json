@@ -27,7 +27,7 @@
     "@types/fs-extra": "9.0.13",
     "@types/node": "16.11.58",
     "@types/uuid": "8.3.4",
-    "aws-sdk": "2.1212.0",
+    "aws-sdk": "2.1213.0",
     "esbuild": "0.15.7",
     "esbuild-node-externals": "1.5.0",
     "esbuild-node-tsc": "2.0.2",
