@@ -36,11 +36,6 @@ const orchestrator = async (event: SQSEvent) => {
             ? {}
             : decoder.decode(response.Payload);
 
-        console.log({
-          oops: 'yay',
-          payload,
-        });
-
         return {
           ...body,
           response: payload,
