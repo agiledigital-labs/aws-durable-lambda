@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "A Serverless plugin to automate using AWS SQS, AWS DynamoDB to achieve a durable function",
   "main": "lib/aws-durable-lambda.js",
-  "types": "lib/libs/types.d.ts",
+  "types": "types/libs/types.d.ts",
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "types/**/*"
   ],
   "scripts": {
     "prepare": "run-s build",
-    "build": "rimraf ./lib && tsc && node ./esbuild.config.js",
+    "build": "rimraf ./lib ./types && tsc && node ./esbuild.libs.config.js && node ./esbuild.config.js",
     "format": "prettier --write src esbuild.config.js package.json tsconfig.json tsconfig.paths.json",
     "format-check": "prettier --check src esbuild.config.js package.json tsconfig.json tsconfig.paths.json"
   },
@@ -17,23 +18,27 @@
     "node": ">=14.15.0"
   },
   "dependencies": {
+    "@aws-sdk/client-lambda": "^3.154.0",
+    "@aws-sdk/client-sqs": "^3.154.0",
+    "dynamoose": "3.1.0",
     "fs-extra": "^10.1.0",
-    "uuid": "^8.3.2",
-    "dynamoose": "3.1.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@serverless/typescript": "3.21.0",
+    "@types/archiver": "^5.3.1",
     "@types/aws-lambda": "8.10.104",
     "@types/fs-extra": "9.0.13",
     "@types/node": "16.11.59",
     "@types/uuid": "8.3.4",
-    "aws-sdk": "2.1218.0",
+    "archiver": "^5.3.0",
     "esbuild": "0.15.8",
     "esbuild-node-externals": "1.5.0",
     "esbuild-node-tsc": "2.0.2",
     "npm-run-all": "4.1.5",
     "prettier": "2.7.1",
     "rimraf": "3.0.2",
+    "serverless": "^3.22.0",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.1.0",
     "typescript": "4.8.3"

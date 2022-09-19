@@ -1,4 +1,3 @@
-const pkg = require('./package.json');
 const esbuild = require('esbuild');
 
 esbuild
@@ -16,6 +15,6 @@ esbuild
     platform: 'node',
     sourcemap: true,
     target: 'node14',
-    external: ['aws-sdk'],
+    external: ['aws-sdk', '@agiledigital/aws-durable-lambda'],
   })
   .catch(() => process.exit(1));

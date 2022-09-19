@@ -7,9 +7,7 @@
   "engines": {
     "node": ">=14.15.0"
   },
-  "dependencies": {
-    "dynamoose": "^2.8.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@agiledigital/aws-durable-lambda": "../../plugin",
     "@serverless/typescript": "3.3.0",
@@ -17,7 +15,7 @@
     "@types/node": "16.11.26",
     "aws-sdk": "^2.1042.0",
     "serverless": "3.7.1",
-    "serverless-plugin-typescript": "^2.1.2",
+    "serverless-plugin-typescript": "2.1.1",
     "ts-node": "10.6.0",
     "tsconfig-paths": "3.13.0",
     "typescript": "4.6.2"

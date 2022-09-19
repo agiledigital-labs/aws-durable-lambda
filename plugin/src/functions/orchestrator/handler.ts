@@ -1,7 +1,14 @@
-import sqs from '@libs/awsSqs';
-import lambda from '@libs/lambda';
-import { TaskEvent, TaskMessageBody } from '@libs/types';
-import { SQSEvent } from 'aws-lambda';
+import type { SQSEvent } from 'aws-lambda';
+import type {
+  TaskEvent,
+  TaskMessageBody,
+} from '@agiledigital/aws-durable-lambda';
+
+import {
+  sendSqsMessage,
+  invokeLambdaFunction,
+} from '@agiledigital/aws-durable-lambda';
+import { TextDecoder } from 'util';
 
 const orchestrator = async (event: SQSEvent) => {
   const messages = event.Records;
@@ -18,18 +25,20 @@ const orchestrator = async (event: SQSEvent) => {
           requestPayload,
         };
 
-        const response = await lambda
-          .invoke({
-            FunctionName: functionName,
-            Payload: JSON.stringify(event),
-          })
-          .promise();
+        const response = await invokeLambdaFunction(functionName, event);
 
         const finishedAt = new Date().toISOString();
 
+        const decoder = new TextDecoder('utf-8');
+
+        const payload =
+          response.Payload === undefined
+            ? {}
+            : decoder.decode(response.Payload);
+
         return {
           ...body,
-          response: response.Payload ?? {},
+          response: payload,
           startedAt,
           finishedAt,
         };
@@ -42,17 +51,12 @@ const orchestrator = async (event: SQSEvent) => {
   console.log('Finished processing', JSON.stringify(results, null, 2));
 
   await Promise.all(
-    results.map(async (result) => {
-      return sqs
-        .sendMessage({
-          QueueUrl: process.env.FUNCTION_TASK_OUTPUT_QUEUE_URL,
-          MessageBody: JSON.stringify({
-            ...result,
-            status: result.error ? 'Failed' : 'Completed',
-          }),
-        })
-        .promise();
-    })
+    results.map(async (result) =>
+      sendSqsMessage(process.env.FUNCTION_TASK_OUTPUT_QUEUE_URL, {
+        ...result,
+        status: result.error ? 'Failed' : 'Completed',
+      })
+    )
   );
 
   console.log('Outputs sent to the queue');

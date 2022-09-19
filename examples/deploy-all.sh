@@ -34,6 +34,6 @@ do
     rm -rf node_modules
     yarn install
 
-    yarn sls deploy --stage sandbox --verbose --conceal
+    yarn sls deploy --stage sandbox --conceal
     popd
 done

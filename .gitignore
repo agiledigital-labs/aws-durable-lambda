@@ -4,6 +4,7 @@ jspm_packages
 
 # Serverless directories
 .serverless
+.build
 
 # Webpack directories
 .webpack
@@ -16,6 +17,7 @@ coverage-ts-test
 .envrc
 /coverage/
 lib
+types
 
 #MAC hidden file
 .DS_Store
@@ -25,3 +27,6 @@ lib
 
 # yarn
 yarn-error.log
+
+# aws-durable-lambda
+.adl

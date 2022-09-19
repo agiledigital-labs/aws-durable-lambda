@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@libs/*": ["src/libs/*"]
+      "@agiledigital/aws-durable-lambda": ["src/libs/index.ts"],
+      "@agiledigital/aws-durable-lambda/*": ["src/libs/*"]
     }
   }
 }
