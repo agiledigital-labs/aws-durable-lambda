@@ -30,6 +30,20 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: lts/fermium
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          # Security Note:
+          # This IAM user only has permissions to DescribeStacks for any stack
+          # that begins with "adl-example-*" in the build sandbox environment.
+          # Permission is required for PR workflows to be run by new contributors.
+          #
+          # Future work: do this with a role (see: https://github.com/aws-actions/configure-aws-credentials#credentials)
+          # or better yet at some point we might not need this if Serverless removes the
+          # dependency on AWS credentials for packaging (follow https://github.com/serverless/serverless/issues/8187)
+          aws-access-key-id: ${{ secrets.PACKAGE_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.PACKAGE_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-2
 
       # TODO: Can we build/test the plugin once and then share with the example project jobs?
       - run: yarn install
