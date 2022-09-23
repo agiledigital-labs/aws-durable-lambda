@@ -985,7 +985,7 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
-"@types/archiver@^5.3.1":
+"@types/archiver@5.3.1":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@types/archiver/-/archiver-5.3.1.tgz#02991e940a03dd1a32678fead4b4ca03d0e387ca"
   integrity sha512-wKYZaSXaDvTZuInAWjCeGG7BEAgTWG2zZW0/f7IYFcoHB2X2d9lkVFnrOlXl3W6NrvO6Ml3FLLu8Uksyymcpnw==
@@ -1162,7 +1162,7 @@ archiver-utils@^2.1.0:
     normalize-path "^3.0.0"
     readable-stream "^2.0.0"
 
-archiver@^5.3.0, archiver@^5.3.1:
+archiver@5.3.1, archiver@^5.3.0, archiver@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/archiver/-/archiver-5.3.1.tgz#21e92811d6f09ecfce649fbefefe8c79e57cbbb6"
   integrity sha512-8KyabkmbYrH+9ibcTScQ1xCJC/CGcugdVIwB+53f5sZziXgwUh3iXlAlANMxcZyDEfTHMe6+Z5FofV8nopXP7w==
@@ -3738,7 +3738,7 @@ semver@^7.3.5, semver@^7.3.7:
   dependencies:
     lru-cache "^6.0.0"
 
-serverless@^3.22.0:
+serverless@3.22.0:
   version "3.22.0"
   resolved "https://registry.yarnpkg.com/serverless/-/serverless-3.22.0.tgz#b4dde8142ebd72ba08a8f264cc2b900ad3ecdbaf"
   integrity sha512-S/C4jbTFW95AwAw2wSqQa28FCordHwj+sUt3SHPgLNq0ryWcagR03C7vvIEnunmb7Rj5uEIcvArmjuaYNYN0+w==
