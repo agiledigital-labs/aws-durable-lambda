@@ -27,9 +27,9 @@
   "devDependencies": {
     "@serverless/typescript": "3.21.0",
     "@types/archiver": "5.3.1",
-    "@types/aws-lambda": "8.10.107",
+    "@types/aws-lambda": "8.10.108",
     "@types/fs-extra": "9.0.13",
-    "@types/node": "16.11.66",
+    "@types/node": "16.11.68",
     "@types/uuid": "8.3.4",
     "archiver": "5.3.1",
     "esbuild": "0.15.11",
