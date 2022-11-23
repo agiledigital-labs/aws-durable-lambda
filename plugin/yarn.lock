@@ -905,10 +905,10 @@
     traverse "^0.6.6"
     ws "^7.5.3"
 
-"@serverless/typescript@3.21.0":
-  version "3.21.0"
-  resolved "https://registry.yarnpkg.com/@serverless/typescript/-/typescript-3.21.0.tgz#f23969cd9c4c9afb0840400e4f53d89bca1a6e01"
-  integrity sha512-SiGqgBbE1npu4wMCKsN+sF5pH3RIsQvjvtzhnr6ZYuDDX1r1I1lVR0uLk12v2vAIywVUmKym7Z3cKUTc7NIioA==
+"@serverless/typescript@3.25.0":
+  version "3.25.0"
+  resolved "https://registry.yarnpkg.com/@serverless/typescript/-/typescript-3.25.0.tgz#d53db8250e744fda8b66707b680ae321264a559a"
+  integrity sha512-KwP14cP9+1IfM/TQveOaDu8OtituZ2gD55P9B7vDt/ZRzDasTHdOXuZUlDaXGNcwA40HTudXxH9AbLeDLYe4wg==
 
 "@serverless/utils@^6.0.3":
   version "6.7.0"
