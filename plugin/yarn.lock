@@ -1672,10 +1672,10 @@
     traverse "^0.6.6"
     ws "^7.5.3"
 
-"@serverless/typescript@3.27.0":
-  version "3.27.0"
-  resolved "https://registry.yarnpkg.com/@serverless/typescript/-/typescript-3.27.0.tgz#a443f1df2417924d0078a357d4cb7128e4dc3f13"
-  integrity sha512-5T7v032HAt/RYHb9xf5HLg03s/WZopRarlnVt+nVekJVci5nil4C5B6U0eBVfyE9Klproy/9DIcj4RJesBOiEA==
+"@serverless/typescript@3.29.0":
+  version "3.29.0"
+  resolved "https://registry.yarnpkg.com/@serverless/typescript/-/typescript-3.29.0.tgz#70d3b8bbbff426b504e7cb8db93b80a30a289371"
+  integrity sha512-q0D+nNZI1zwebAN9m/6rQij+FdampYCY1bs712UNZTJ2yd8tkASHZqRhcwf+gmtquUWsg1Ws7l73cv3fzSDtzg==
 
 "@serverless/utils@^6.10.0":
   version "6.10.0"
