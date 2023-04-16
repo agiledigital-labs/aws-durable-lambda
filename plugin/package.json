@@ -20,7 +20,7 @@
   "dependencies": {
     "@aws-sdk/client-lambda": "^3.154.0",
     "@aws-sdk/client-sqs": "^3.154.0",
-    "dynamoose": "3.1.0",
+    "dynamoose": "3.2.0",
     "fs-extra": "^10.1.0",
     "uuid": "^8.3.2"
   },
