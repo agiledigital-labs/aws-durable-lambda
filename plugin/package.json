@@ -32,7 +32,7 @@
     "@types/node": "18.17.3",
     "@types/uuid": "8.3.4",
     "archiver": "5.3.1",
-    "esbuild": "0.18.18",
+    "esbuild": "0.18.19",
     "esbuild-node-externals": "1.8.0",
     "esbuild-node-tsc": "2.0.5",
     "npm-run-all": "4.1.5",
