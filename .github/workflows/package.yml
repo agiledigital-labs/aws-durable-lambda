@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: lts/fermium
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           # Security Note:
           # This IAM user only has permissions to DescribeStacks for any stack
