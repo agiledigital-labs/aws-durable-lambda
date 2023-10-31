@@ -1927,10 +1927,10 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
-"@types/archiver@5.3.2":
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/@types/archiver/-/archiver-5.3.2.tgz#a9f0bcb0f0b991400e7766d35f6e19d163bdadcc"
-  integrity sha512-IctHreBuWE5dvBDz/0WeKtyVKVRs4h75IblxOACL92wU66v+HGAfEYAOyXkOFphvRJMhuXdI9huDXpX0FC6lCw==
+"@types/archiver@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@types/archiver/-/archiver-6.0.0.tgz#9b1de8b975a083785e7be84fa4d6c7f9ddffdd59"
+  integrity sha512-I1bHy/iSj8/u552lUjnOMG7rUhVkcbGIoNOj7CB/EMah1In+oQAwVZjw2mTI6qx04e5lF2V0JH/1w78jm/Dejw==
   dependencies:
     "@types/readdir-glob" "*"
 
