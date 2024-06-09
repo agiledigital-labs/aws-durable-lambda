@@ -30,7 +30,7 @@
     "@types/aws-lambda": "8.10.119",
     "@types/fs-extra": "9.0.13",
     "@types/node": "20.8.9",
-    "@types/uuid": "8.3.4",
+    "@types/uuid": "9.0.8",
     "archiver": "7.0.0",
     "esbuild": "0.19.2",
     "esbuild-node-externals": "1.8.0",
